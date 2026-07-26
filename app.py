@@ -55,7 +55,7 @@ def guardar_datos_disco():
 # CONFIGURACIÓN GENERAL AZUL ÍNDIGO
 # =========================================================
 st.set_page_config(
-    page_title="Analytics System - Dark Tech Edition",
+    page_title="Analytics System",
     page_icon="⚡",
     layout="wide"
 )
@@ -134,7 +134,7 @@ with st.sidebar:
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("### 🗂️ Navegación")
+    st.markdown("### 🗂️ Módulos")
     
     opcion = st.selectbox(
         "Seleccione un módulo:",
