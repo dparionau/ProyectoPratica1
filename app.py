@@ -2,12 +2,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Importamos las librerías con las funciones y clases del proyecto
+# Importamos librerías
 import libreria_funciones_proyecto1 as lfunc
 import libreria_clases_proyecto1 as lclase
 
 # =========================================================
-# CONFIGURACIÓN GENERAL DE LA APLICACIÓN
+# CONFIGURACIÓN DE LA APLICACIÓN
 # =========================================================
 st.set_page_config(
     page_title="Analytics System - Dark Tech Edition",
@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# DISEÑO CSS: ESTILO DARK TECH / AZUL ÍNDIGO ELEGANTE
+# DISEÑO: ESTILO AZUL ÍNDIGO ELEGANTE
 # =========================================================
 st.markdown("""
     <style>
@@ -127,7 +127,7 @@ if "empleados_crud" not in st.session_state:
 
 
 # =========================================================
-# MENÚ LATERAL: LOGO VECTORIAL ELEGANTE Y DESPLEGABLE
+# MENÚ LATERAL:
 # =========================================================
 with st.sidebar:
     # Logo Profesional en Vector SVG (Modo Oscuro / Cyber Tech)
@@ -153,7 +153,7 @@ with st.sidebar:
         [
             "Inicio",
             "Ejercicio 1 - Flujo de Caja",
-            "Ejercicio 2 - Inventario NumPy",
+            "Ejercicio 2 - Inventario",
             "Ejercicio 3 - Crecimiento de Ventas",
             "Ejercicio 4 - Gestión de Empleados"
         ]
@@ -172,7 +172,7 @@ with st.sidebar:
 
 
 # =========================================================
-# 1. INICIO / HOME
+# 1. INICIO
 # =========================================================
 if opcion == "Inicio":
     st.title("Plataforma Analytics - Python Fundamentals")
@@ -183,7 +183,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### 👤 Datos del Proyecto")
-        st.write("**Estudiante:** Juan Pérez")  # Personaliza con tu nombre
+        st.write("**Autor:** Dino Fredy Pariona Ucharima")
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año:** 2026")
@@ -199,8 +199,7 @@ if opcion == "Inicio":
 
     st.markdown("### 📋 Descripción")
     st.info(
-        "Plataforma analítica con diseño Dark Tech optimizado y configuración monetaria en Soles (S/). "
-        "Consolida el manejo de flujo de datos, matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python."
+                "Consolida el manejo de flujo de datos, matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python. Configuración monetaria en Soles (S/)"
     )
 
 
@@ -209,7 +208,7 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("Gestión iterativa de transacciones financieras mediante listas de Python.")
+    st.caption("Gestión iterativa de transacciones financieras.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Registrar Movimiento</h4>", unsafe_allow_html=True)
@@ -257,9 +256,9 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 # =========================================================
 # 3. EJERCICIO 2: INVENTARIO CON NUMPY
 # =========================================================
-elif opcion == "Ejercicio 2 - Inventario NumPy":
+elif opcion == "Ejercicio 2 - Inventario":
     st.header("Ejercicio 2 - Control de Inventario")
-    st.caption("Estructuración de datos en matrices NumPy y Pandas DataFrames.")
+    st.caption("")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📦 Captura de Producto</h4>", unsafe_allow_html=True)
@@ -315,7 +314,7 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
+    st.caption("")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📈 Análisis Comparativo de Ventas</h4>", unsafe_allow_html=True)
@@ -379,7 +378,7 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
     st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
-    st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
+    st.caption("Administración de colaboradores.")
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs([
         "Registrar", 
