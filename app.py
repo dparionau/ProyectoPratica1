@@ -10,78 +10,100 @@ import libreria_clases_proyecto1 as lclase
 # CONFIGURACIÓN GENERAL DE LA APLICACIÓN
 # =========================================================
 st.set_page_config(
-    page_title="Analytics System - Python Fundamentals",
+    page_title="Analytics System - Dark Tech Edition",
     page_icon="⚡",
     layout="wide"
 )
 
 # =========================================================
-# DISEÑO CSS: ESTILO ELEGANTE, PROFESIONAL Y TECNOLÓGICO
+# DISEÑO CSS: ESTILO DARK TECH / AZUL ÍNDIGO ELEGANTE
 # =========================================================
 st.markdown("""
     <style>
-    /* Fondo limpio de alta resolución */
+    /* Fondo principal modo oscuro - Azul Índigo / Noche */
     .stApp {
-        background-color: #f8fafc;
+        background-color: #0b0f19;
+        color: #f1f5f9;
     }
 
-    /* Estilo de botones principales: Azulino Ejecutivo con Hover */
-    div.stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-        color: #ffffff !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 0.5rem 1rem !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.3px !important;
-        box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2) !important;
-        transition: all 0.25s ease-in-out !important;
-    }
-    
-    div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
-        box-shadow: 0 6px 12px -2px rgba(2, 132, 199, 0.35) !important;
-        transform: translateY(-1px);
+    /* Menú Lateral Oscuro */
+    section[data-testid="stSidebar"] {
+        background-color: #0f172a !important;
+        border-right: 1px solid #1e293b !important;
     }
 
-    /* Tarjetas Tecnológicas con Bordes Finos en Celeste */
-    [data-testid="stForm"], div[data-testid="stVerticalBlock"] > div[style*="background-color"] {
-        border-radius: 12px !important;
-        border: 1px solid #e0f2fe !important;
-        box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.05) !important;
-    }
-
-    /* Cajas destacadas de tarjetas azules */
-    .card-tech {
-        background: #ffffff;
-        border-left: 4px solid #0284c7;
-        border-top: 1px solid #e0f2fe;
-        border-right: 1px solid #e0f2fe;
-        border-bottom: 1px solid #e0f2fe;
-        border-radius: 10px;
-        padding: 18px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    }
-
-    .card-metric {
-        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        border: 1px solid #bae6fd;
-        border-radius: 10px;
-        padding: 16px;
-        text-align: center;
-    }
-
-    /* Títulos principales */
-    h1, h2, h3 {
-        color: #0f172a !important;
+    /* Personalización de Títulos */
+    h1, h2, h3, h4, h5, h6 {
+        color: #f8fafc !important;
         font-weight: 700 !important;
     }
 
-    /* Estilo del menú lateral */
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff !important;
-        border-right: 1px solid #e2e8f0 !important;
+    /* Estilo para Tarjetas y Contenedores */
+    [data-testid="stForm"], div[data-testid="stVerticalBlock"] > div[style*="background-color"] {
+        background-color: #1e293b !important;
+        border-radius: 12px !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Tarjeta Dark Tech con borde neón azulino */
+    .card-dark-tech {
+        background: #1e293b;
+        border: 1px solid #0284c7;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 15px rgba(2, 132, 199, 0.15);
+    }
+
+    /* Tarjetas Métricas */
+    .card-metric-dark {
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        border: 1px solid #38bdf8;
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Botón Principal (Azulino Neón) */
+    div.stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.6rem 1.2rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.4px !important;
+        box-shadow: 0 0 12px rgba(2, 132, 199, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    div.stButton > button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+        box-shadow: 0 0 20px rgba(2, 132, 199, 0.7) !important;
+        transform: translateY(-1px);
+    }
+
+    /* Personalización de Inputs y Selectboxes en modo oscuro */
+    input, select, textarea {
+        color: #f8fafc !important;
+    }
+    
+    .stSelectbox > div > div {
+        background-color: #0f172a !important;
+        border: 1px solid #334155 !important;
+        color: #f8fafc !important;
+        border-radius: 8px !important;
+    }
+
+    /* Ajuste de Pestañas (Tabs) */
+    button[data-baseweb="tab"] {
+        color: #94a3b8 !important;
+    }
+    button[aria-selected="true"] {
+        color: #38bdf8 !important;
+        border-bottom-color: #38bdf8 !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -97,7 +119,7 @@ if "inventario" not in st.session_state:
     st.session_state.inventario = pd.DataFrame(columns=["Producto", "Categoría", "Precio", "Cantidad", "Total"])
 
 if "historial_funciones" not in st.session_state:
-    st.session_state.historial_funciones = pd.DataFrame(columns=["Fecha/Hora", "Función", "Parámetros Ingresados", "Resultado"])
+    st.session_state.historial_funciones = pd.DataFrame(columns=["Función", "Parámetros Ingresados", "Resultado"])
 
 if "empleados_crud" not in st.session_state:
     st.session_state.empleados_crud = []
@@ -105,12 +127,27 @@ if "empleados_crud" not in st.session_state:
 
 
 # =========================================================
-# MENÚ LATERAL: DESPLEGABLE MINIMALISTA
+# MENÚ LATERAL: LOGO VECTORIAL ELEGANTE Y DESPLEGABLE
 # =========================================================
 with st.sidebar:
+    # Logo Profesional en Vector SVG (Modo Oscuro / Cyber Tech)
+    st.markdown("""
+        <div style="text-align: center; padding: 10px 0 20px 0;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 style="margin-top: 8px; margin-bottom: 0; color: #f8fafc; font-size: 1.2rem; letter-spacing: 1px;">
+                ANALYTICS<span style="color:#38bdf8;">PRO</span>
+            </h3>
+            <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px;">Core System 2026</span>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("### 🗂️ Navegación")
     
-    # Cuadro desplegable sin íconos cargados
+    # Menú desplegable minimalista
     opcion = st.selectbox(
         "Seleccione un módulo:",
         [
@@ -124,12 +161,12 @@ with st.sidebar:
     
     st.divider()
     
-    # Panel lateral tipo resumen
+    # Tarjeta Informativa Sidebar
     st.markdown("""
-        <div class="card-tech">
-            <span style="color:#0284c7; font-weight:bold; font-size: 0.85rem; text-transform: uppercase;">Estado del Sistema</span>
-            <p style="margin-top:8px; margin-bottom:4px; color:#334155; font-size: 0.9rem;"><b>Módulo:</b> Python Fundamentals</p>
-            <p style="margin-bottom:0; color:#334155; font-size: 0.9rem;"><b>Versión:</b> 2026.1</p>
+        <div class="card-dark-tech" style="padding: 14px; margin-top: 10px;">
+            <span style="color:#38bdf8; font-weight:bold; font-size: 0.8rem; text-transform: uppercase;">Estado del Entorno</span>
+            <p style="margin-top:6px; margin-bottom:2px; color:#cbd5e1; font-size: 0.85rem;"><b>Motor:</b> Python 3.12+</p>
+            <p style="margin-bottom:0; color:#cbd5e1; font-size: 0.85rem;"><b>Tema:</b> Dark Indigo Tech</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -145,26 +182,25 @@ if opcion == "Inicio":
     col_info, col_resumen = st.columns([2, 1])
 
     with col_info:
-        st.markdown("### 👤 Información del Proyecto")
-        st.write("**Autor:** Dino Fredy Pariona Ucharima")
+        st.markdown("### 👤 Datos del Proyecto")
+        st.write("**Autor:** Dino Fredy Pariona Ucharima")  # Personaliza con tu nombre
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
-        st.write("**Periodo Académico:** 2026")
+        st.write("**Año:** 2026")
 
     with col_resumen:
         with st.container(border=True):
-            st.markdown("<h4 style='color:#0284c7; font-size:1.1rem; margin-bottom:10px;'>📊 Métricas en Memoria</h4>", unsafe_allow_html=True)
+            st.markdown("<h4 style='color:#38bdf8; font-size:1.05rem; margin-bottom:10px;'>📊 Métricas en Sistema</h4>", unsafe_allow_html=True)
             st.write(f"• Registros en caja: **{len(st.session_state.flujo_caja)}**")
             st.write(f"• Ítems en inventario: **{len(st.session_state.inventario)}**")
-            st.write(f"• Personal en sistema: **{len(st.session_state.empleados_crud)}**")
+            st.write(f"• Personal registrado: **{len(st.session_state.empleados_crud)}**")
 
     st.divider()
 
-    st.markdown("### 📋 Alcance de la Aplicación")
+    st.markdown("### 📋 Descripción")
     st.info(
-        "Esta plataforma integra de manera modular los fundamentos de desarrollo en Python: "
-        "gestión de flujo de datos en listas, arreglos multidimensionales con NumPy, tablas analíticas en Pandas, "
-        "módulos de cálculo financiero/comercial y persistencia mediante Programación Orientada a Objetos (POO)."
+        "Plataforma analítica con diseño Dark Tech optimizado. Consolida el manejo de flujo de datos, "
+        "matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python."
     )
 
 
@@ -173,13 +209,13 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("Control y seguimiento de ingresos y egresos financieros.")
+    st.caption("")
 
     with st.container(border=True):
-        st.markdown("<h4 style='color:#0284c7; font-size:1.1rem;'>➕ Captura de Movimiento</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Registrar Movimiento</h4>", unsafe_allow_html=True)
         c1, c2, c3 = st.columns([2, 1, 1])
 
-        concepto = c1.text_input("Concepto / Descripción", placeholder="Ej. Licencia de software")
+        concepto = c1.text_input("Concepto / Descripción", placeholder="Ej. Suscripción Servidores AWS")
         tipo = c2.selectbox("Tipo de Operación", ["Ingreso", "Gasto"])
         valor = c3.number_input("Monto ($)", min_value=0.01, step=10.0, format="%.2f")
 
@@ -190,9 +226,9 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
                     "Tipo": tipo,
                     "Valor": valor
                 })
-                st.toast("Movimiento registrado exitosamente.", icon="✅")
+                st.toast("Movimiento guardado con éxito.", icon="✅")
             else:
-                st.warning("Ingrese un concepto descriptivo.")
+                st.warning("Ingrese un concepto válido.")
 
     st.write("")
     st.markdown("### 📋 Registro de Movimientos")
@@ -211,11 +247,11 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
         m3.metric("Saldo Neto", f"${saldo:,.2f}")
 
         if saldo >= 0:
-            st.info(f"Balance Positivo: Tienes un superávit de **${saldo:,.2f}**")
+            st.info(f"Balance Positivo: Superávit de **${saldo:,.2f}**")
         else:
-            st.warning(f"Balance En Déficit: Presentas un saldo en contra de **${abs(saldo):,.2f}**")
+            st.warning(f"Balance En Déficit: Déficit de **${abs(saldo):,.2f}**")
     else:
-        st.info("No se han registrado movimientos todavía.")
+        st.info("No hay transacciones registradas.")
 
 
 # =========================================================
@@ -223,24 +259,24 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 # =========================================================
 elif opcion == "Ejercicio 2 - Inventario NumPy":
     st.header("Ejercicio 2 - Control de Inventario")
-    st.caption("Estructuración de matrices de productos mediante NumPy y DataFrames.")
+    st.caption("")
 
     with st.container(border=True):
-        st.markdown("<h4 style='color:#0284c7; font-size:1.1rem;'>📦 Registrar Producto</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📦 Captura de Producto</h4>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
-        prod_nombre = col1.text_input("Nombre del Producto", placeholder="Ej. Monitor 27 pulgadas")
+        prod_nombre = col1.text_input("Nombre del Producto", placeholder="Ej. Laptop Core i9")
         prod_cat = col2.selectbox("Categoría", ["Tecnología", "Oficina", "Servicios", "Línea Blanca"])
 
         col3, col4 = st.columns(2)
         prod_precio = col3.number_input("Precio Unitario ($)", min_value=0.01, step=1.0, format="%.2f")
-        prod_cant = col4.number_input("Cantidad en Stock", min_value=1, step=1)
+        prod_cant = col4.number_input("Cantidad", min_value=1, step=1)
 
         if st.button("Agregar Producto", use_container_width=True, type="primary"):
             if prod_nombre.strip():
                 prod_total = prod_precio * prod_cant
                 
-                # Construcción con NumPy
+                # Matriz con NumPy
                 arr_registro = np.array([[prod_nombre.strip(), prod_cat, prod_precio, prod_cant, prod_total]])
 
                 df_nuevo = pd.DataFrame(
@@ -253,25 +289,25 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
                 df_nuevo["Total"] = df_nuevo["Total"].astype(float)
 
                 st.session_state.inventario = pd.concat([st.session_state.inventario, df_nuevo], ignore_index=True)
-                st.toast(f"Producto '{prod_nombre}' añadido correctamente.", icon="✅")
+                st.toast(f"Producto '{prod_nombre}' agregado.", icon="✅")
             else:
                 st.warning("Ingrese un nombre de producto.")
 
     st.write("")
-    st.markdown("### 📊 Consolidated Stock Table")
+    st.markdown("### 📊 Inventario Consolidado")
 
     if not st.session_state.inventario.empty:
         st.dataframe(st.session_state.inventario, use_container_width=True)
         total_inv = st.session_state.inventario["Total"].sum()
         
         st.markdown(f"""
-            <div class="card-tech">
-                <span style="color:#0284c7; font-weight:bold; font-size: 0.85rem; text-transform: uppercase;">Valorización de Inventario</span>
-                <h3 style="color:#0369a1; margin-top:5px; margin-bottom:0;">${total_inv:,.2f} USD</h3>
+            <div class="card-dark-tech">
+                <span style="color:#38bdf8; font-weight:bold; font-size: 0.85rem; text-transform: uppercase;">Valorización de Stock</span>
+                <h2 style="color:#f8fafc; margin-top:5px; margin-bottom:0;">${total_inv:,.2f} USD</h2>
             </div>
         """, unsafe_allow_html=True)
     else:
-        st.info("El inventario no contiene registros.")
+        st.info("El inventario se encuentra vacío.")
 
 
 # =========================================================
@@ -279,16 +315,16 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("Cálculo comercial automatizado mediante `libreria_funciones_proyecto1.py`.")
+    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
 
     with st.container(border=True):
-        st.markdown("<h4 style='color:#0284c7; font-size:1.1rem;'>📈 Parámetros de Comparación</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📈 Análisis Comparativo de Ventas</h4>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
-        v_ant = col1.number_input("Ventas del Período Anterior ($)", min_value=1.0, value=15000.0, step=500.0)
-        v_act = col2.number_input("Ventas del Período Actual ($)", min_value=0.0, value=18500.0, step=500.0)
+        v_ant = col1.number_input("Ventas Período Anterior ($)", min_value=1.0, value=15000.0, step=500.0)
+        v_act = col2.number_input("Ventas Período Actual ($)", min_value=0.0, value=18500.0, step=500.0)
 
-        if st.button("Ejecutar Cálculo de Crecimiento", use_container_width=True, type="primary"):
+        if st.button("Ejecutar Cálculo", use_container_width=True, type="primary"):
             try:
                 # Llamada directa a la función externa
                 res = lfunc.calcular_tasa_crecimiento_ventas(
@@ -297,29 +333,29 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
                 )
                 
                 tasa_val = res['tasa_crecimiento_pct']
-                
-                # Presentación ejecutiva del resultado
+                diferencia = v_act - v_ant
+
+                # Presentación Neón Dark Tech
                 st.write("")
                 col_res1, col_res2 = st.columns(2)
                 
                 with col_res1:
                     st.markdown(f"""
-                        <div class="card-metric">
-                            <span style="color:#0369a1; font-weight:bold; font-size:0.9rem;">TASA DE CRECIMIENTO</span>
-                            <h2 style="color:#0284c7; margin:5px 0;">{tasa_val}%</h2>
+                        <div class="card-metric-dark">
+                            <span style="color:#38bdf8; font-weight:bold; font-size:0.85rem; text-transform:uppercase;">Tasa de Crecimiento</span>
+                            <h1 style="color:#f8fafc; margin:5px 0; font-size:2.2rem;">{tasa_val}%</h1>
                         </div>
                     """, unsafe_allow_html=True)
                     
                 with col_res2:
-                    diferencia = v_act - v_ant
                     st.markdown(f"""
-                        <div class="card-metric">
-                            <span style="color:#0369a1; font-weight:bold; font-size:0.9rem;">VARIACIÓN ABSOLUTA</span>
-                            <h2 style="color:#0284c7; margin:5px 0;">${diferencia:,.2f}</h2>
+                        <div class="card-metric-dark">
+                            <span style="color:#38bdf8; font-weight:bold; font-size:0.85rem; text-transform:uppercase;">Variación Absoluta</span>
+                            <h1 style="color:#f8fafc; margin:5px 0; font-size:2.2rem;">${diferencia:,.2f}</h1>
                         </div>
                     """, unsafe_allow_html=True)
 
-                # Guardado en el historial de ejecuciones
+                # Historial de consultas
                 nuevo_hist = pd.DataFrame([{
                     "Función": "calcular_tasa_crecimiento_ventas",
                     "Parámetros Ingresados": f"Anterior=${v_ant:,.2f} | Actual=${v_act:,.2f}",
@@ -328,14 +364,14 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
                 st.session_state.historial_funciones = pd.concat([st.session_state.historial_funciones, nuevo_hist], ignore_index=True)
                 
             except Exception as e:
-                st.error(f"Error durante el cálculo: {e}")
+                st.error(f"Error en la ejecución: {e}")
 
     st.write("")
     st.markdown("### 📜 Bitácora de Cálculos")
     if not st.session_state.historial_funciones.empty:
         st.dataframe(st.session_state.historial_funciones, use_container_width=True)
     else:
-        st.info("Aún no se han ejecutado cálculos en este módulo.")
+        st.info("No hay cálculos guardados en esta sesión.")
 
 
 # =========================================================
@@ -345,7 +381,6 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
     st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
     st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
 
-    # Pestañas ejecutivas estilo tab
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs([
         "Registrar", 
         "Directorio", 
@@ -353,10 +388,10 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
         "Eliminar"
     ])
 
-    # 1. REGISTRAR
+    # CREAR
     with tab_crear:
         with st.container(border=True):
-            st.markdown("<h4 style='color:#0284c7; font-size:1.1rem;'>➕ Alta de Colaborador</h4>", unsafe_allow_html=True)
+            st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Alta de Empleado</h4>", unsafe_allow_html=True)
             
             c1, c2 = st.columns(2)
             emp_nombre = c1.text_input("Nombre Completo", placeholder="Ej. Lucía Alarcón")
@@ -369,7 +404,6 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
             if st.button("Guardar Empleado", use_container_width=True, type="primary"):
                 if emp_nombre.strip():
                     try:
-                        # Instanciación de la clase
                         nuevo_emp = lclase.Empleado(
                             nombre=emp_nombre.strip(),
                             salario_base=emp_salario,
@@ -384,34 +418,34 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
 
                         st.session_state.empleados_crud.append(resumen)
                         st.session_state.contador_id += 1
-                        st.toast(f"Empleado ID {resumen['id']} registrado correctamente.", icon="✅")
+                        st.toast(f"Empleado ID {resumen['id']} registrado.", icon="✅")
                     except Exception as e:
-                        st.error(f"Ocurrió un error al registrar: {e}")
+                        st.error(f"Error al registrar: {e}")
                 else:
                     st.warning("Ingrese un nombre válido.")
 
-    # 2. VER LISTA
+    # LEER
     with tab_leer:
-        st.markdown("### Directorio General de Empleados")
+        st.markdown("### Directorio de Personal")
         if st.session_state.empleados_crud:
             df_emp = pd.DataFrame(st.session_state.empleados_crud)
             cols = ["id", "nombre", "salario_base", "pct_bono", "bono", "pct_descuento", "descuento", "salario_neto"]
             df_emp = df_emp[[c for c in cols if c in df_emp.columns]]
             st.dataframe(df_emp, use_container_width=True)
         else:
-            st.info("No existen registros en la base de datos.")
+            st.info("No hay registros disponibles.")
 
-    # 3. EDITAR
+    # ACTUALIZAR
     with tab_actualizar:
         if st.session_state.empleados_crud:
             lista_ids = [e["id"] for e in st.session_state.empleados_crud]
-            id_sel = st.selectbox("Seleccione el ID a modificar:", lista_ids)
+            id_sel = st.selectbox("Seleccione el ID a editar:", lista_ids)
 
             emp_actual = next((item for item in st.session_state.empleados_crud if item["id"] == id_sel), None)
 
             if emp_actual:
                 with st.container(border=True):
-                    st.markdown(f"<h4 style='color:#0284c7; font-size:1.1rem;'>Modificar Datos (ID: {id_sel})</h4>", unsafe_allow_html=True)
+                    st.markdown(f"<h4 style='color:#38bdf8; font-size:1.1rem;'>Editar Registro (ID: {id_sel})</h4>", unsafe_allow_html=True)
                     
                     c1, c2 = st.columns(2)
                     up_nombre = c1.text_input("Nombre Completo", value=emp_actual["nombre"])
@@ -437,28 +471,28 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
                             idx = next(i for i, item in enumerate(st.session_state.empleados_crud) if item["id"] == id_sel)
                             st.session_state.empleados_crud[idx] = resumen
                             
-                            st.toast("Registro actualizado con éxito.", icon="✅")
+                            st.toast("Registro actualizado.", icon="✅")
                             st.rerun()
                         except Exception as e:
                             st.error(f"Error al actualizar: {e}")
         else:
-            st.info("No hay registros para modificar.")
+            st.info("No existen registros para actualizar.")
 
-    # 4. ELIMINAR
+    # ELIMINAR
     with tab_eliminar:
         if st.session_state.empleados_crud:
             lista_ids_del = [e["id"] for e in st.session_state.empleados_crud]
-            id_del = st.selectbox("Seleccione el ID del empleado a eliminar:", lista_ids_del, key="del_select")
+            id_del = st.selectbox("Seleccione el ID a eliminar:", lista_ids_del, key="del_select")
 
             emp_del = next((item for item in st.session_state.empleados_crud if item["id"] == id_del), None)
 
             if emp_del:
                 with st.container(border=True):
-                    st.info(f"¿Desea dar de baja permanentemente a **{emp_del['nombre']}** (ID: {id_del})?")
+                    st.info(f"¿Confirma la eliminación de **{emp_del['nombre']}** (ID: {id_del})?")
                     
                     if st.button("Confirmar Eliminación", type="primary", use_container_width=True):
                         st.session_state.empleados_crud = [item for item in st.session_state.empleados_crud if item["id"] != id_del]
                         st.toast("Empleado eliminado.", icon="✅")
                         st.rerun()
         else:
-            st.info("No existen registros disponibles para dar de baja.")
+            st.info("No hay registros para eliminar.")
