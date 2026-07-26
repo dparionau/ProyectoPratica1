@@ -110,7 +110,7 @@ st.markdown("""
 
 
 # =========================================================
-# MEMORIA DE LA APLICACIÓN (Session State)
+# MEMORIA DE LA APLICACIÓN
 # =========================================================
 if "flujo_caja" not in st.session_state:
     st.session_state.flujo_caja = []
@@ -199,7 +199,7 @@ if opcion == "Inicio":
 
     st.markdown("### 📋 Descripción")
     st.info(
-                "Consolida el manejo de flujo de datos, matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python. Configuración monetaria en Soles (S/)"
+                "Consolida el manejo de flujo de datos, análisis de ventas. Moneda en Soles (S/)"
     )
 
 
@@ -208,7 +208,7 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("Gestión iterativa de transacciones financieras.")
+    st.caption("Gestión de transacciones financieras.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Registrar Movimiento</h4>", unsafe_allow_html=True)
@@ -254,7 +254,7 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 
 
 # =========================================================
-# 3. EJERCICIO 2: INVENTARIO CON NUMPY
+# 3. EJERCICIO 2: INVENTARIO
 # =========================================================
 elif opcion == "Ejercicio 2 - Inventario":
     st.header("Ejercicio 2 - Control de Inventario")
@@ -310,7 +310,7 @@ elif opcion == "Ejercicio 2 - Inventario":
 
 
 # =========================================================
-# 4. EJERCICIO 3: TASA DE CRECIMIENTO DE VENTAS (ÚNICA OPCIÓN)
+# 4. EJERCICIO 3: TASA DE CRECIMIENTO DE VENTAS
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
@@ -377,7 +377,7 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 # 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS (POO Y CRUD)
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
-    st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
+    st.header("Ejercicio 4 - Gestión de Personal")
     st.caption("Administración de colaboradores.")
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs([
