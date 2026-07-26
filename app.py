@@ -42,7 +42,6 @@ def guardar_datos_disco():
             "flujo_caja": st.session_state.flujo_caja,
             "empleados_crud": st.session_state.empleados_crud,
             "contador_id": st.session_state.contador_id,
-            # Convertimos los DataFrames a formato diccionario para JSON
             "inventario": st.session_state.inventario.to_dict(orient="records"),
             "historial_funciones": st.session_state.historial_funciones.to_dict(orient="records")
         }
@@ -104,7 +103,6 @@ if "inicializado" not in st.session_state:
     st.session_state.empleados_crud = []
     st.session_state.contador_id = 1
     
-    # Cargamos desde el disco duro si existe el archivo
     cargar_datos_disco()
     st.session_state.inicializado = True
 
@@ -201,7 +199,6 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
                     "Tipo": tipo,
                     "Valor (S/)": valor
                 })
-                # Guardamos la actualización en el disco
                 guardar_datos_disco()
                 st.toast("Movimiento guardado permanentemente.", icon="✅")
             else:
@@ -259,8 +256,6 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
                 df_nuevo["Total (S/)"] = df_nuevo["Total (S/)"].astype(float)
 
                 st.session_state.inventario = pd.concat([st.session_state.inventario, df_nuevo], ignore_index=True)
-                
-                # Guardamos la actualización en disco
                 guardar_datos_disco()
                 st.toast(f"Producto '{prod_nombre}' guardado en disco.", icon="✅")
             else:
@@ -330,8 +325,6 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
                     "Resultado": f"Tasa: {tasa_val}% | Dif: S/ {diferencia:,.2f}"
                 }])
                 st.session_state.historial_funciones = pd.concat([st.session_state.historial_funciones, nuevo_hist], ignore_index=True)
-                
-                # Guardamos en disco
                 guardar_datos_disco()
                 
             except Exception as e:
@@ -359,14 +352,14 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
         with st.container(border=True):
             st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Alta de Empleado</h4>", unsafe_allow_html=True)
             c1, c2 = st.columns(2)
-            emp_nombre = c1.text_input("Nombre Completo", placeholder="Ej. Lucía Alarcón")
-            emp_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=2500.0, step=100.0)
+            emp_nombre = c1.text_input("Nombre Completo", placeholder="Ej. Lucía Alarcón", key="crear_nombre")
+            emp_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=2500.0, step=100.0, key="crear_salario")
 
             c3, c4 = c1, c2
-            emp_bono = c3.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=10.0)
-            emp_desc = c4.number_input("Descuento (%)", min_value=0.0, max_value=100.0, value=5.0)
+            emp_bono = c3.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=10.0, key="crear_bono")
+            emp_desc = c4.number_input("Descuento (%)", min_value=0.0, max_value=100.0, value=5.0, key="crear_desc")
 
-            if st.button("Guardar Empleado", use_container_width=True, type="primary"):
+            if st.button("Guardar Empleado", use_container_width=True, type="primary", key="btn_crear"):
                 if emp_nombre.strip():
                     try:
                         nuevo_emp = lclase.Empleado(
@@ -384,7 +377,6 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
                         st.session_state.empleados_crud.append(resumen)
                         st.session_state.contador_id += 1
                         
-                        # Guardamos en disco
                         guardar_datos_disco()
                         st.toast(f"Empleado ID {resumen['id']} registrado permanentemente.", icon="✅")
                     except Exception as e:
@@ -409,24 +401,24 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
         else:
             st.info("No hay registros disponibles.")
 
-    # ACTUALIZAR
+    # ACTUALIZAR (CLAVE: SE AGREGARON KEYS ÚNICAS PARA EVITAR EL DUPLICATE ELEMENT ID)
     with tab_actualizar:
         if st.session_state.empleados_crud:
             lista_ids = [e["id"] for e in st.session_state.empleados_crud]
-            id_sel = st.selectbox("Seleccione el ID a editar:", lista_ids)
+            id_sel = st.selectbox("Seleccione el ID a editar:", lista_ids, key="select_id_editar")
             emp_actual = next((item for item in st.session_state.empleados_crud if item["id"] == id_sel), None)
 
             if emp_actual:
                 with st.container(border=True):
                     st.markdown(f"<h4 style='color:#38bdf8; font-size:1.1rem;'>Editar Registro (ID: {id_sel})</h4>", unsafe_allow_html=True)
                     c1, c2 = st.columns(2)
-                    up_nombre = c1.text_input("Nombre Completo", value=emp_actual["nombre"])
-                    up_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=float(emp_actual["salario_base"]))
+                    up_nombre = c1.text_input("Nombre Completo", value=emp_actual["nombre"], key=f"edit_nombre_{id_sel}")
+                    up_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=float(emp_actual["salario_base"]), key=f"edit_salario_{id_sel}")
 
-                    up_bono = c1.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_bono", 0)))
-                    up_desc = c2.number_input("Descuento (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_descuento", 0)))
+                    up_bono = c1.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_bono", 0)), key=f"edit_bono_{id_sel}")
+                    up_desc = c2.number_input("Descuento (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_descuento", 0)), key=f"edit_desc_{id_sel}")
 
-                    if st.button("Actualizar Registro", use_container_width=True, type="primary"):
+                    if st.button("Actualizar Registro", use_container_width=True, type="primary", key=f"btn_edit_{id_sel}"):
                         try:
                             obj_modificado = lclase.Empleado(
                                 nombre=up_nombre.strip(),
@@ -443,7 +435,6 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
                             idx = next(i for i, item in enumerate(st.session_state.empleados_crud) if item["id"] == id_sel)
                             st.session_state.empleados_crud[idx] = resumen
                             
-                            # Guardamos en disco
                             guardar_datos_disco()
                             st.toast("Registro actualizado en disco.", icon="✅")
                             st.rerun()
@@ -462,10 +453,9 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
             if emp_del:
                 with st.container(border=True):
                     st.info(f"¿Confirma la eliminación de **{emp_del['nombre']}** (ID: {id_del})?")
-                    if st.button("Confirmar Eliminación", type="primary", use_container_width=True):
+                    if st.button("Confirmar Eliminación", type="primary", use_container_width=True, key=f"btn_del_{id_del}"):
                         st.session_state.empleados_crud = [item for item in st.session_state.empleados_crud if item["id"] != id_del]
                         
-                        # Guardamos en disco
                         guardar_datos_disco()
                         st.toast("Empleado eliminado.", icon="✅")
                         st.rerun()
