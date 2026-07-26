@@ -36,7 +36,7 @@ def cargar_datos_disco():
             st.error(f"Error al cargar la base de datos persistente: {e}")
 
 def guardar_datos_disco():
-    """Guarda el estado actual de session_state en el archivo JSON."""
+    """Guarda el estado actual."""
     try:
         datos = {
             "flujo_caja": st.session_state.flujo_caja,
@@ -162,8 +162,8 @@ with st.sidebar:
 # 1. INICIO / HOME
 # =========================================================
 if opcion == "Inicio":
-    st.title("Proyecto práctica 1 - Python Fundamentals")
-    st.caption("Especialización en Python for Analytics")
+    st.title("Proyecto práctica 1")
+    st.caption("Ejercicios Dino Pariona")
     st.divider()
 
     col_info, col_resumen = st.columns([2, 1])
@@ -176,7 +176,7 @@ if opcion == "Inicio":
         st.write("**Año:** 2026")
 
     with col_resumen:
-        with st.expander("📊 Métricas Persistidas", expanded=True):
+        with st.expander("📊 Métricas Registradas", expanded=True):
             st.write(f"• Registros en caja: **{len(st.session_state.flujo_caja)}**")
             st.write(f"• Ítems en inventario: **{len(st.session_state.inventario)}**")
             st.write(f"• Personal registrado: **{len(st.session_state.empleados_crud)}**")
