@@ -132,7 +132,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### Datos del Estudiante")
-        st.write("**Estudiante:** Juan Pérez")  # Escribe aquí tu nombre completo
+        st.write("**Estudiante:** Dino Fredy Pariona Ucharima")
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año Académico:** 2026")
