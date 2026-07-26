@@ -183,7 +183,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### 👤 Datos del Proyecto")
-        st.write("**Autor:** Dino Fredy Pariona Ucharima")  # Personaliza con tu nombre
+        st.write("**Estudiante:** Dino Fredy Pariona Ucharima")
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año:** 2026")
@@ -315,7 +315,7 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
+    st.caption("")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📈 Análisis Comparativo de Ventas</h4>", unsafe_allow_html=True)
@@ -375,11 +375,11 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 
 
 # =========================================================
-# 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS
+# 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS (POO Y CRUD)
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
-    st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
-    st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
+    st.header("Ejercicio 4 - Gestión de Personal")
+    st.caption("")
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs([
         "Registrar", 
