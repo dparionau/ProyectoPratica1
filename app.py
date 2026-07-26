@@ -116,7 +116,7 @@ if "flujo_caja" not in st.session_state:
     st.session_state.flujo_caja = []
 
 if "inventario" not in st.session_state:
-    st.session_state.inventario = pd.DataFrame(columns=["Producto", "Categoría", "Precio", "Cantidad", "Total"])
+    st.session_state.inventario = pd.DataFrame(columns=["Producto", "Categoría", "Precio (S/)", "Cantidad", "Total (S/)"])
 
 if "historial_funciones" not in st.session_state:
     st.session_state.historial_funciones = pd.DataFrame(columns=["Función", "Parámetros Ingresados", "Resultado"])
@@ -165,7 +165,7 @@ with st.sidebar:
     st.markdown("""
         <div class="card-dark-tech" style="padding: 14px; margin-top: 10px;">
             <span style="color:#38bdf8; font-weight:bold; font-size: 0.8rem; text-transform: uppercase;">Estado del Entorno</span>
-            <p style="margin-top:6px; margin-bottom:2px; color:#cbd5e1; font-size: 0.85rem;"><b>Motor:</b> Python 3.12+</p>
+            <p style="margin-top:6px; margin-bottom:2px; color:#cbd5e1; font-size: 0.85rem;"><b>Moneda:</b> Sol Peruano (S/)</p>
             <p style="margin-bottom:0; color:#cbd5e1; font-size: 0.85rem;"><b>Tema:</b> Dark Indigo Tech</p>
         </div>
     """, unsafe_allow_html=True)
@@ -183,7 +183,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### 👤 Datos del Proyecto")
-        st.write("**Estudiante:** Dino Fredy Pariona Ucharima")
+        st.write("**Estudiante:** Juan Pérez")  # Personaliza con tu nombre
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año:** 2026")
@@ -199,8 +199,8 @@ if opcion == "Inicio":
 
     st.markdown("### 📋 Descripción")
     st.info(
-        "Plataforma analítica con diseño Dark Tech optimizado. Consolida el manejo de flujo de datos, "
-        "matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python."
+        "Plataforma analítica con diseño Dark Tech optimizado y configuración monetaria en Soles (S/). "
+        "Consolida el manejo de flujo de datos, matrices con NumPy, análisis de ventas y persistencia modular mediante clases en Python."
     )
 
 
@@ -209,22 +209,22 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("")
+    st.caption("Gestión iterativa de transacciones financieras mediante listas de Python.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Registrar Movimiento</h4>", unsafe_allow_html=True)
         c1, c2, c3 = st.columns([2, 1, 1])
 
-        concepto = c1.text_input("Concepto / Descripción", placeholder="Ej. Suscripción Servidores AWS")
+        concepto = c1.text_input("Concepto / Descripción", placeholder="Ej. Pago de licencias informáticas")
         tipo = c2.selectbox("Tipo de Operación", ["Ingreso", "Gasto"])
-        valor = c3.number_input("Monto ($)", min_value=0.01, step=10.0, format="%.2f")
+        valor = c3.number_input("Monto (S/)", min_value=0.01, step=10.0, format="%.2f")
 
         if st.button("Guardar Movimiento", use_container_width=True, type="primary"):
             if concepto.strip():
                 st.session_state.flujo_caja.append({
                     "Concepto": concepto.strip(),
                     "Tipo": tipo,
-                    "Valor": valor
+                    "Valor (S/)": valor
                 })
                 st.toast("Movimiento guardado con éxito.", icon="✅")
             else:
@@ -237,19 +237,19 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
         df_flujo = pd.DataFrame(st.session_state.flujo_caja)
         st.dataframe(df_flujo, use_container_width=True)
 
-        ingresos = df_flujo[df_flujo["Tipo"] == "Ingreso"]["Valor"].sum()
-        gastos = df_flujo[df_flujo["Tipo"] == "Gasto"]["Valor"].sum()
+        ingresos = df_flujo[df_flujo["Tipo"] == "Ingreso"]["Valor (S/)"].sum()
+        gastos = df_flujo[df_flujo["Tipo"] == "Gasto"]["Valor (S/)"].sum()
         saldo = ingresos - gastos
 
         m1, m2, m3 = st.columns(3)
-        m1.metric("Total Ingresos", f"${ingresos:,.2f}")
-        m2.metric("Total Gastos", f"${gastos:,.2f}")
-        m3.metric("Saldo Neto", f"${saldo:,.2f}")
+        m1.metric("Total Ingresos", f"S/ {ingresos:,.2f}")
+        m2.metric("Total Gastos", f"S/ {gastos:,.2f}")
+        m3.metric("Saldo Neto", f"S/ {saldo:,.2f}")
 
         if saldo >= 0:
-            st.info(f"Balance Positivo: Superávit de **${saldo:,.2f}**")
+            st.info(f"Balance Positivo: Superávit de **S/ {saldo:,.2f}**")
         else:
-            st.warning(f"Balance En Déficit: Déficit de **${abs(saldo):,.2f}**")
+            st.warning(f"Balance En Déficit: Déficit de **S/ {abs(saldo):,.2f}**")
     else:
         st.info("No hay transacciones registradas.")
 
@@ -259,17 +259,17 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 # =========================================================
 elif opcion == "Ejercicio 2 - Inventario NumPy":
     st.header("Ejercicio 2 - Control de Inventario")
-    st.caption("")
+    st.caption("Estructuración de datos en matrices NumPy y Pandas DataFrames.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📦 Captura de Producto</h4>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
-        prod_nombre = col1.text_input("Nombre del Producto", placeholder="Ej. Laptop Core i9")
+        prod_nombre = col1.text_input("Nombre del Producto", placeholder="Ej. Equipo Multiactivo")
         prod_cat = col2.selectbox("Categoría", ["Tecnología", "Oficina", "Servicios", "Línea Blanca"])
 
         col3, col4 = st.columns(2)
-        prod_precio = col3.number_input("Precio Unitario ($)", min_value=0.01, step=1.0, format="%.2f")
+        prod_precio = col3.number_input("Precio Unitario (S/)", min_value=0.01, step=1.0, format="%.2f")
         prod_cant = col4.number_input("Cantidad", min_value=1, step=1)
 
         if st.button("Agregar Producto", use_container_width=True, type="primary"):
@@ -281,12 +281,12 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 
                 df_nuevo = pd.DataFrame(
                     arr_registro,
-                    columns=["Producto", "Categoría", "Precio", "Cantidad", "Total"]
+                    columns=["Producto", "Categoría", "Precio (S/)", "Cantidad", "Total (S/)"]
                 )
 
-                df_nuevo["Precio"] = df_nuevo["Precio"].astype(float)
+                df_nuevo["Precio (S/)"] = df_nuevo["Precio (S/)"].astype(float)
                 df_nuevo["Cantidad"] = df_nuevo["Cantidad"].astype(int)
-                df_nuevo["Total"] = df_nuevo["Total"].astype(float)
+                df_nuevo["Total (S/)"] = df_nuevo["Total (S/)"].astype(float)
 
                 st.session_state.inventario = pd.concat([st.session_state.inventario, df_nuevo], ignore_index=True)
                 st.toast(f"Producto '{prod_nombre}' agregado.", icon="✅")
@@ -298,12 +298,12 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 
     if not st.session_state.inventario.empty:
         st.dataframe(st.session_state.inventario, use_container_width=True)
-        total_inv = st.session_state.inventario["Total"].sum()
+        total_inv = st.session_state.inventario["Total (S/)"].sum()
         
         st.markdown(f"""
             <div class="card-dark-tech">
                 <span style="color:#38bdf8; font-weight:bold; font-size: 0.85rem; text-transform: uppercase;">Valorización de Stock</span>
-                <h2 style="color:#f8fafc; margin-top:5px; margin-bottom:0;">${total_inv:,.2f} USD</h2>
+                <h2 style="color:#f8fafc; margin-top:5px; margin-bottom:0;">S/ {total_inv:,.2f} PEN</h2>
             </div>
         """, unsafe_allow_html=True)
     else:
@@ -311,18 +311,18 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 
 
 # =========================================================
-# 4. EJERCICIO 3: TASA DE CRECIMIENTO DE VENTAS
+# 4. EJERCICIO 3: TASA DE CRECIMIENTO DE VENTAS (ÚNICA OPCIÓN)
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("")
+    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📈 Análisis Comparativo de Ventas</h4>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
-        v_ant = col1.number_input("Ventas Período Anterior ($)", min_value=1.0, value=15000.0, step=500.0)
-        v_act = col2.number_input("Ventas Período Actual ($)", min_value=0.0, value=18500.0, step=500.0)
+        v_ant = col1.number_input("Ventas Período Anterior (S/)", min_value=1.0, value=15000.0, step=500.0)
+        v_act = col2.number_input("Ventas Período Actual (S/)", min_value=0.0, value=18500.0, step=500.0)
 
         if st.button("Ejecutar Cálculo", use_container_width=True, type="primary"):
             try:
@@ -351,15 +351,15 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
                     st.markdown(f"""
                         <div class="card-metric-dark">
                             <span style="color:#38bdf8; font-weight:bold; font-size:0.85rem; text-transform:uppercase;">Variación Absoluta</span>
-                            <h1 style="color:#f8fafc; margin:5px 0; font-size:2.2rem;">${diferencia:,.2f}</h1>
+                            <h1 style="color:#f8fafc; margin:5px 0; font-size:2.2rem;">S/ {diferencia:,.2f}</h1>
                         </div>
                     """, unsafe_allow_html=True)
 
                 # Historial de consultas
                 nuevo_hist = pd.DataFrame([{
                     "Función": "calcular_tasa_crecimiento_ventas",
-                    "Parámetros Ingresados": f"Anterior=${v_ant:,.2f} | Actual=${v_act:,.2f}",
-                    "Resultado": f"Tasa: {tasa_val}% | Dif: ${diferencia:,.2f}"
+                    "Parámetros Ingresados": f"Anterior=S/ {v_ant:,.2f} | Actual=S/ {v_act:,.2f}",
+                    "Resultado": f"Tasa: {tasa_val}% | Dif: S/ {diferencia:,.2f}"
                 }])
                 st.session_state.historial_funciones = pd.concat([st.session_state.historial_funciones, nuevo_hist], ignore_index=True)
                 
@@ -378,8 +378,8 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 # 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS (POO Y CRUD)
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
-    st.header("Ejercicio 4 - Gestión de Personal")
-    st.caption("")
+    st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
+    st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs([
         "Registrar", 
@@ -395,7 +395,7 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
             
             c1, c2 = st.columns(2)
             emp_nombre = c1.text_input("Nombre Completo", placeholder="Ej. Lucía Alarcón")
-            emp_salario = c2.number_input("Salario Base ($)", min_value=1.0, value=1800.0, step=100.0)
+            emp_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=2500.0, step=100.0)
 
             c3, c4 = c1, c2
             emp_bono = c3.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=10.0)
@@ -431,6 +431,15 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
             df_emp = pd.DataFrame(st.session_state.empleados_crud)
             cols = ["id", "nombre", "salario_base", "pct_bono", "bono", "pct_descuento", "descuento", "salario_neto"]
             df_emp = df_emp[[c for c in cols if c in df_emp.columns]]
+            
+            # Renombramos columnas visibles para incluir la denominación S/
+            df_emp = df_emp.rename(columns={
+                "salario_base": "Salario Base (S/)",
+                "bono": "Bono (S/)",
+                "descuento": "Descuento (S/)",
+                "salario_neto": "Salario Neto (S/)"
+            })
+            
             st.dataframe(df_emp, use_container_width=True)
         else:
             st.info("No hay registros disponibles.")
@@ -449,7 +458,7 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
                     
                     c1, c2 = st.columns(2)
                     up_nombre = c1.text_input("Nombre Completo", value=emp_actual["nombre"])
-                    up_salario = c2.number_input("Salario Base ($)", min_value=1.0, value=float(emp_actual["salario_base"]))
+                    up_salario = c2.number_input("Salario Base (S/)", min_value=1.0, value=float(emp_actual["salario_base"]))
 
                     up_bono = c1.number_input("Bono (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_bono", 0)))
                     up_desc = c2.number_input("Descuento (%)", min_value=0.0, max_value=100.0, value=float(emp_actual.get("pct_descuento", 0)))
