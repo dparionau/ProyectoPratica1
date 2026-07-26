@@ -162,7 +162,7 @@ with st.sidebar:
 # 1. INICIO / HOME
 # =========================================================
 if opcion == "Inicio":
-    st.title("Proyecto práctica 1")
+    st.title("Proyecto práctica 1 - Dino Pariona")
     st.caption("Ejercicios Dino Pariona")
     st.divider()
 
