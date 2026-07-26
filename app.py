@@ -33,7 +33,7 @@ if opcion == "Home":
         # st.image("logo.png", width=150) # Opcional
         pass
     with col2:
-        st.markdown("**Estudiante:** Tu Nombre Completo")
+        st.markdown("**Autor:** Dino Fredy Pariona Ucharima")
         st.markdown("**Módulo:** Módulo 1 - Python Fundamentals")
         st.markdown("**Año:** 2026")
     
