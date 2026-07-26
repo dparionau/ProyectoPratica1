@@ -12,7 +12,7 @@ import libreria_clases_proyecto1 as lclase
 ARCHIVO_PERSISTENCIA = "datos_guardados.json"
 
 # =========================================================
-# FUNCIONES DE PERSISTENCIA (CARGAR Y GUARDAR EN DISCO)
+# FUNCIONES DE PERSISTENCIA
 # =========================================================
 def cargar_datos_disco():
     """Carga los datos guardados en el archivo JSON al iniciar la app."""
@@ -36,7 +36,7 @@ def cargar_datos_disco():
             st.error(f"Error al cargar la base de datos persistente: {e}")
 
 def guardar_datos_disco():
-    """Guarda el estado actual de session_state en el archivo JSON."""
+    """Guarda el estado actual con session_state."""
     try:
         datos = {
             "flujo_caja": st.session_state.flujo_caja,
@@ -52,7 +52,7 @@ def guardar_datos_disco():
 
 
 # =========================================================
-# CONFIGURACIÓN GENERAL Y ESTILOS DARK TECH / AZUL ÍNDIGO
+# CONFIGURACIÓN GENERAL AZUL ÍNDIGO
 # =========================================================
 st.set_page_config(
     page_title="Analytics System - Dark Tech Edition",
@@ -132,7 +132,7 @@ with st.sidebar:
         [
             "Inicio",
             "Ejercicio 1 - Flujo de Caja",
-            "Ejercicio 2 - Inventario NumPy",
+            "Ejercicio 2 - Inventario",
             "Ejercicio 3 - Crecimiento de Ventas",
             "Ejercicio 4 - Gestión de Empleados"
         ]
@@ -161,7 +161,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### 👤 Datos del Proyecto")
-        st.write("**Estudiante:** Juan Pérez")
+        st.write("**Autor:** Dino Fredy Pariona Ucharima")
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año:** 2026")
@@ -174,7 +174,7 @@ if opcion == "Inicio":
             st.write(f"• Personal registrado: **{len(st.session_state.empleados_crud)}**")
 
     st.divider()
-    st.info("Los datos registrados en cualquiera de los módulos son guardados en tiempo real en la memoria local del servidor/PC.")
+    st.info("Los datos registrados en cualquiera de los módulos son guardados en tiempo real.")
 
 
 # =========================================================
@@ -182,7 +182,7 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("Gestión iterativa de transacciones financieras mediante listas de Python.")
+    st.caption("Gestión de transacciones financieras.")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>➕ Registrar Movimiento</h4>", unsafe_allow_html=True)
@@ -224,9 +224,9 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 
 
 # =========================================================
-# 3. EJERCICIO 2: INVENTARIO CON NUMPY
+# 3. EJERCICIO 2: INVENTARIO
 # =========================================================
-elif opcion == "Ejercicio 2 - Inventario NumPy":
+elif opcion == "Ejercicio 2 - Inventario":
     st.header("Ejercicio 2 - Control de Inventario")
     st.caption("Estructuración de datos en matrices NumPy y Pandas DataFrames.")
 
@@ -283,7 +283,7 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
+    st.caption("")
 
     with st.container(border=True):
         st.markdown("<h4 style='color:#38bdf8; font-size:1.1rem;'>📈 Análisis Comparativo de Ventas</h4>", unsafe_allow_html=True)
@@ -343,7 +343,7 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
     st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
-    st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
+    st.caption("Administración de colaboradores")
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs(["Registrar", "Directorio", "Editar", "Eliminar"])
 
@@ -401,7 +401,7 @@ elif opcion == "Ejercicio 4 - Gestión de Empleados":
         else:
             st.info("No hay registros disponibles.")
 
-    # ACTUALIZAR (CLAVE: SE AGREGARON KEYS ÚNICAS PARA EVITAR EL DUPLICATE ELEMENT ID)
+    # ACTUALIZAR
     with tab_actualizar:
         if st.session_state.empleados_crud:
             lista_ids = [e["id"] for e in st.session_state.empleados_crud]
