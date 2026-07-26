@@ -12,7 +12,7 @@ import libreria_clases_proyecto1 as lclase
 ARCHIVO_PERSISTENCIA = "datos_guardados.json"
 
 # =========================================================
-# FUNCIONES DE PERSISTENCIA (CARGAR Y GUARDAR EN DISCO)
+# FUNCIONES DE PERSISTENCIA
 # =========================================================
 def cargar_datos_disco():
     """Carga los datos guardados en el archivo JSON al iniciar la app."""
@@ -52,7 +52,7 @@ def guardar_datos_disco():
 
 
 # =========================================================
-# CONFIGURACIÓN GENERAL Y ESTILOS DARK TECH / AZUL ÍNDIGO
+# CONFIGURACIÓN GENERAL AZUL ÍNDIGO
 # =========================================================
 st.set_page_config(
     page_title="Analytics System - Dark Tech Edition",
@@ -141,7 +141,7 @@ with st.sidebar:
         [
             "Inicio",
             "Ejercicio 1 - Flujo de Caja",
-            "Ejercicio 2 - Inventario NumPy",
+            "Ejercicio 2 - Inventario",
             "Ejercicio 3 - Crecimiento de Ventas",
             "Ejercicio 4 - Gestión de Empleados"
         ]
@@ -162,7 +162,7 @@ with st.sidebar:
 # 1. INICIO / HOME
 # =========================================================
 if opcion == "Inicio":
-    st.title("Plataforma Analytics - Python Fundamentals")
+    st.title("Proyecto práctica 1 - Python Fundamentals")
     st.caption("Especialización en Python for Analytics")
     st.divider()
 
@@ -170,7 +170,7 @@ if opcion == "Inicio":
 
     with col_info:
         st.markdown("### 👤 Datos del Proyecto")
-        st.write("**Estudiante:** Juan Pérez")
+        st.write("**Autor:** Dino Fredy Pariona Ucharima")
         st.write("**Programa:** Python for Analytics")
         st.write("**Docente:** MSc. Carlos Carrillo Villavicencio")
         st.write("**Año:** 2026")
@@ -182,7 +182,7 @@ if opcion == "Inicio":
             st.write(f"• Personal registrado: **{len(st.session_state.empleados_crud)}**")
 
     st.divider()
-    st.info("Los datos registrados en cualquiera de los módulos son guardados en tiempo real en la memoria local del servidor/PC.")
+    st.info("")
 
 
 # =========================================================
@@ -190,7 +190,7 @@ if opcion == "Inicio":
 # =========================================================
 elif opcion == "Ejercicio 1 - Flujo de Caja":
     st.header("Ejercicio 1 - Flujo de Caja")
-    st.caption("Gestión iterativa de transacciones financieras mediante listas de Python.")
+    st.caption("Gestión de transacciones financieras.")
 
     with st.expander("➕ Registrar Movimiento de Caja", expanded=True):
         c1, c2, c3 = st.columns([2, 1, 1])
@@ -229,11 +229,11 @@ elif opcion == "Ejercicio 1 - Flujo de Caja":
 
 
 # =========================================================
-# 3. EJERCICIO 2: INVENTARIO CON NUMPY
+# 3. EJERCICIO 2: INVENTARIO
 # =========================================================
-elif opcion == "Ejercicio 2 - Inventario NumPy":
+elif opcion == "Ejercicio 2 - Inventario":
     st.header("Ejercicio 2 - Control de Inventario")
-    st.caption("Estructuración de datos en matrices NumPy y Pandas DataFrames.")
+    st.caption("")
 
     with st.expander("📦 Captura y Alta de Producto", expanded=True):
         col1, col2 = st.columns(2)
@@ -284,7 +284,7 @@ elif opcion == "Ejercicio 2 - Inventario NumPy":
 # =========================================================
 elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
     st.header("Ejercicio 3 - Tasa de Crecimiento de Ventas")
-    st.caption("Cálculo comercial automatizado con la librería `libreria_funciones_proyecto1.py`.")
+    st.caption("")
 
     with st.expander("📈 Análisis Comparativo de Ventas", expanded=True):
         col1, col2 = st.columns(2)
@@ -337,11 +337,11 @@ elif opcion == "Ejercicio 3 - Crecimiento de Ventas":
 
 
 # =========================================================
-# 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS (POO Y CRUD)
+# 5. EJERCICIO 4: GESTIÓN DE EMPLEADOS
 # =========================================================
 elif opcion == "Ejercicio 4 - Gestión de Empleados":
-    st.header("Ejercicio 4 - Gestión de Personal (CRUD)")
-    st.caption("Administración de colaboradores utilizando la clase `Empleado`.")
+    st.header("Ejercicio 4 - Gestión de Personal")
+    st.caption("Administración de colaboradores.")
 
     # REGISTRAR
     with st.expander("➕ Alta de Empleado (CREAR)", expanded=True):
