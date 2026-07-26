@@ -105,13 +105,11 @@ elif opcion == "Ejercicio 2":
 # ==========================================
 elif opcion == "Ejercicio 3":
     st.header("Ejercicio 3: Funciones Externas")
-    # import libreria_funciones_proyecto1 as lfunc
-    st.info("Conecta aquí tus funciones del archivo 'libreria_funciones_proyecto1.py'.")
+    import libreria_funciones_proyecto1 as lfunc
 
 # ==========================================
 # 5. EJERCICIO 4: Clases & CRUD
 # ==========================================
 elif opcion == "Ejercicio 4":
     st.header("Ejercicio 4: Clases Externas y Operaciones CRUD")
-    # import libreria_clases_proyecto1 as lclase
-    st.info("Implementa aquí el CRUD de las clases de 'libreria_clases_proyecto1.py'.")
+    import libreria_clases_proyecto1 as lclase
